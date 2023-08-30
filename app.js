@@ -1,5 +1,7 @@
 const express = require('express');
-const sequelize = require('./Model/database');
+
+let PORT = 3000
+
 const dotenv = require('dotenv');
 dotenv.config()
 
@@ -13,9 +15,6 @@ const userRoutes = require('./Routes/user');
 
 app.use(userRoutes)
 
-sequelize.sync()
-    .then(() => {
-        app.listen(3000)
-    }).catch(err => {
-        console.log(err)
-    })
+app.listen(PORT, () => {
+    console.log('App running on port', PORT)
+})
